@@ -1,0 +1,15 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>Trang chu</title>
+    </head>
+    <body>
+        <h1>Welcome to E-commerce</h1>
+        <h1 th:text="${msg}"></h1>
+        
+        <ul>
+            <li th:each="c: ${categories}" th:text="${c.name}"></li>
+        </ul>
+    </body>
+</html>
