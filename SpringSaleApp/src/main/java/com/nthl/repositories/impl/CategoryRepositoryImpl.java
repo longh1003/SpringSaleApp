@@ -4,21 +4,32 @@
  */
 package com.nthl.repositories.impl;
 
-import com.nthl.hibernatedemo.HibernateConfigs;
+import com.nthl.configs.HibernateConfigs;
 import com.nthl.pojo.Category;
+
 import jakarta.persistence.Query;
 import java.util.List;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  *
  * @author admin
  */
-public class CategoryRepositoryImpl {
+@Repository
+@Transactional
+public class CategoryRepositoryImpl implements CategoryRepository{
+    @Autowired
+    private LocalSessionFactoryBean factory;
+    
     public List<Category> getCates() {
-        try (Session s = HibernateConfigs.getFACTORY().openSession()) {
+            Session s = this.factory.getObject().getCurrentSession();
             Query q = s.createQuery("FROM Category", Category.class);
             return q.getResultList();
         }
     }
-}
+

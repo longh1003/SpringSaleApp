@@ -6,8 +6,10 @@ package com.nthl.controllers;
 
 
 import com.nthl.pojo.Category;
+import com.nthl.services.CategoryService;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,16 +22,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
-    private LocalSessionFactoryBean factory;
+    @Autowired
+    private CategoryService cateService;
     
     @RequestMapping("/")
     @Transactional
     public String index (Model model) {
-        model.addAttribute("msg", "Hello OU");
+        model.addAttribute("categories", this.cateService.getCates());
         
-        Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("FROM Category", Category.class);
-        model.addAttribute("categories", q.getResultList());
         return "index";
     }
 }
