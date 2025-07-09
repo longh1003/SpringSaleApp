@@ -19,7 +19,7 @@
                             <a class="nav-link" th:href="@{/}">Trang chủ</a>
                         </li>
                         <li class="nav-item" th:each="c: ${categories}">
-                            <a class="nav-link" href="#" th:text="${c.name}">Link</a>
+                            <a class="nav-link" href="#" th:text="${c.name}"></a>
                         </li>
                     </ul>
                 </div>
@@ -30,14 +30,28 @@
             <h1 class="text-info text-center mt-2">QUẢN LÝ SẢN PHẨM</h1>
 
             <div class="mt-2 mb-2">
-                <a href="#" class="btn btn-success">Thêm sản phẩm</a>
+                <a th:href="@{/products}" class="btn btn-success">Thêm sản phẩm</a>
             </div>
 
             <div>
                 <form th:action="@{/}">
                     <div class="form-floating mb-3 mt-3">
-                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                        <label for="email">Email</label>
+                        <input type="text" class="form-control" placeholder="Nhập từ khóa" name="kw">
+                        <label for="kw">Nhập từ khóa</label>
+                    </div>
+                    <div class="form-floating mb-3 mt-3 row">
+                        <div class="col-md-6 col-12">
+                            <input type="number" class="form-control" placeholder="Giá min" name="fromPrice">
+                            <label for="from">Giá min</label>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <input type="number" class="form-control" placeholder="Giá max" name="toPrice">
+                            <label for="to">Giá max</label>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3 mt-3">
+                        <button type="submit" class="btn btn-info">Tìm kiếm</button>
                     </div>
                 </form>
             </div>

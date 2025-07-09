@@ -31,10 +31,17 @@ public class HomeController {
     private ProductService prodService;
     
     @RequestMapping("/")
-    @Transactional
     public String index (Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("categories", this.cateService.getCates());
         model.addAttribute("products", this.prodService.getProducts(params));
         return "index";
+    }
+    
+    public void commonResponses(Model model) {
+        model.addAttribute("categories", this.cateService.getCates());
+    }
+    
+    @RequestMapping("/products")
+    public String listProduct() {
+        return "products";
     }
 }
