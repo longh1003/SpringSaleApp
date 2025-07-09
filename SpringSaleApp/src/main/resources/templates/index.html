@@ -25,5 +25,43 @@
                 </div>
             </div>
         </nav>
+
+        <main class="container">
+            <h1 class="text-info text-center mt-2">QUẢN LÝ SẢN PHẨM</h1>
+
+            <div class="mt-2 mb-2">
+                <a href="#" class="btn btn-success">Thêm sản phẩm</a>
+            </div>
+
+            <div>
+                <form th:action="@{/}">
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                        <label for="email">Email</label>
+                    </div>
+                </form>
+            </div>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Id</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th></th>
+                </tr>
+                <tr th:each="p: ${products}">
+                    <td>
+                        <img th:src="${p.image}" width="200" class="rounded"/>
+                    </td>
+                    <td th:text="${p.id}"></td>
+                    <td th:text="${p.name}"></td>
+                    <td th:text="${p.price} + 'VNĐ'"></td>
+                    <td>
+                        <a href="#" class="btn btn-info">Cập nhật</a>
+                        <button class="btn btn-danger">Xóa</button>
+                    </td>
+                </tr>
+            </table>
+        </main>
     </body>
 </html>
