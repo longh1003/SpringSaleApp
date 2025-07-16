@@ -53,7 +53,7 @@
                     <td th:text="${p.name}"></td>
                     <td th:text="${p.price} + 'VNĐ'"></td>
                     <td>
-                        <a href="#" class="btn btn-info">Cập nhật</a>
+                        <a th:href="@{/products/ + ${p.id}}" class="btn btn-info">Cập nhật</a>
                         <button class="btn btn-danger">Xóa</button>
                     </td>
                 </tr>

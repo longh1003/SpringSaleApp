@@ -11,19 +11,19 @@
 
     <h1>Quản lý sản phẩm</h1>
 
-    <form method="post" enctype="multipart/form-data">
+    <form th:action="@{/products}" method="post" enctype="multipart/form-data" th:object="${product}">
         <div class="form-floating mb-3 mt-3">
-            <input type="text" class="form-control" id="name" placeholder="Tên sản phẩm ...">
+            <input type="text" class="form-control" id="name" placeholder="Tên sản phẩm ..." th:field="*{name}">
             <label for="name">Tên sản phẩm</label>
         </div>
 
         <div class="form-floating mb-3 mt-3">
-            <input type="number" class="form-control" id="price" placeholder="Giá sản phẩm ...">
+            <input type="number" class="form-control" id="price" placeholder="Giá sản phẩm ..." th:field="*{price}>
             <label for="price">Giá sản phẩm</label>
         </div>
         
         <div class="form-floating">
-            <select class="form-select" id="cate">
+            <select class="form-select" id="cate" th:field="*{name}" th:field="*{categoryId}">
                 <option th:each="c: ${categories}" th:text="${c.name}" th:value="${c.id}">1</option>
                 
             </select>
@@ -31,10 +31,10 @@
             
         </div>
         <div class="form-floating mb-3 mt-3">
-            <input type="file" class="form-control" id="price" placeholder="Giá sản phẩm ...">
+            <input type="file" class="form-control" id="price" th:field="*{file}">
         </div>
         <div class="form-floating mb-3 mt-3">
-            <button class="btn btn-success">Thêm sản phẩm</button>
+            <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
         </div>
         
     </form>
