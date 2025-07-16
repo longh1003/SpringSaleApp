@@ -4,31 +4,40 @@
 <html>
     <head>
         <title>Quản lý sản phẩm</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">E-commerce web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/}">Trang chủ</a>
-                        </li>
-                        <li class="nav-item" th:each="c: ${categories}">
-                            <a class="nav-link" href="#" th:text="${c.name}"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <th:context th:replace="base :: resources"></th:context>
+</head>
+<body>
+    <div th:replace="base :: header"></div>
+
+    <h1>Quản lý sản phẩm</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control" id="name" placeholder="Tên sản phẩm ...">
+            <label for="name">Tên sản phẩm</label>
+        </div>
+
+        <div class="form-floating mb-3 mt-3">
+            <input type="number" class="form-control" id="price" placeholder="Giá sản phẩm ...">
+            <label for="price">Giá sản phẩm</label>
+        </div>
         
-        <h1>Quản lý sản phẩm</h1>
+        <div class="form-floating">
+            <select class="form-select" id="cate">
+                <option th:each="c: ${categories}" th:text="${c.name}" th:value="${c.id}">1</option>
+                
+            </select>
+            <label class="form-label">Danh mục</label>
+            
+        </div>
+        <div class="form-floating mb-3 mt-3">
+            <input type="file" class="form-control" id="price" placeholder="Giá sản phẩm ...">
+        </div>
+        <div class="form-floating mb-3 mt-3">
+            <button class="btn btn-success">Thêm sản phẩm</button>
+        </div>
         
-    </body>
-    
+    </form>
+</body>
+
 </html>
